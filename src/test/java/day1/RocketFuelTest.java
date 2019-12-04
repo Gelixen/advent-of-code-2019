@@ -19,11 +19,11 @@ class RocketFuelTest {
 
     @Test
     void testCase3() {
-        assertEquals(654, calculateFuel(1969));
+        assertEquals(966, calculateFuel(1969));
     }
 
     @Test
     void testCase4() {
-        assertEquals(33583, calculateFuel(100756));
+        assertEquals(50346, calculateFuel(100756));
     }
 }

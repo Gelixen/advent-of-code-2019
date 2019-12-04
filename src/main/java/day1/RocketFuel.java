@@ -22,6 +22,12 @@ public class RocketFuel {
     }
 
     public static int calculateFuel(int mass) {
-        return mass / 3 - 2;
+        int requiredFuel = mass / 3 - 2;
+
+        if (requiredFuel > 0) {
+            return requiredFuel + calculateFuel(requiredFuel);
+        } else {
+            return 0;
+        }
     }
 }
