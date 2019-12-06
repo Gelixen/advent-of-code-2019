@@ -15,24 +15,33 @@ public class Password {
         int from = Integer.parseInt(splitRange[0]);
         int to = Integer.parseInt(splitRange[1]);
 
-        return IntStream.range(from, to + 1)
-                .filter(number -> {
-                    int[] numberArray = Integer.toString(number).chars().map(Character::getNumericValue).toArray();
+        return IntStream.rangeClosed(from, to)
+                .filter(Password::orderNonDecreasing)
+                .filter(Password::containsConsecutiveNumbersPair)
+                .count();
+    }
 
-                    boolean containsConsecutiveNumbers = false;
-                    int correctOrderCount = 0;
+    private static boolean orderNonDecreasing(int password) {
+        char[] numbersArray = Integer.toString(password).toCharArray();
 
-                    for (int i = 0; i < numberArray.length - 1; i++) {
-                        if (numberArray[i] == numberArray[i + 1]) {
-                            containsConsecutiveNumbers = true;
-                        }
-                        if (numberArray[i] <= numberArray[i + 1]) {
-                            correctOrderCount++;
-                        }
-                    }
+        for (int i = 0; i < numbersArray.length - 1; i++) {
+            if (numbersArray[i] > numbersArray[i + 1]) {
+                return false;
+            }
+        }
 
-                    return containsConsecutiveNumbers && correctOrderCount == 5;
-                }).count();
+        return true;
+    }
 
+    private static boolean containsConsecutiveNumbersPair(int password) {
+        char[] numbersArray = Integer.toString(password).toCharArray();
+
+        for (int i = 0; i < numbersArray.length - 1; i++) {
+            if (numbersArray[i] == numbersArray[i + 1]) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
