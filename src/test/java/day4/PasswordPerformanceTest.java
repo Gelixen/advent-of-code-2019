@@ -1,5 +1,6 @@
 package day4;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.RepeatedTest;
 
 import java.util.function.Supplier;
@@ -7,6 +8,7 @@ import java.util.function.Supplier;
 import static day4.Password.calculate;
 import static day4.Password.calculateAlternative;
 
+@Disabled
 public class PasswordPerformanceTest {
 
     private static final String RANGE = "1000000000-1005000000";
