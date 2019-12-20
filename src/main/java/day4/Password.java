@@ -1,6 +1,5 @@
 package day4;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -66,12 +65,10 @@ public class Password {
     }
 
     private static boolean containsRepetitiveNumbersPair2(int password) {
-        Collection<Long> numbersRepetitions = Integer.toString(password)
+        return String.valueOf(password)
                 .chars()
                 .boxed()
                 .collect(groupingBy(Function.identity(), counting()))
-                .values();
-
-        return numbersRepetitions.stream().anyMatch(repetitions -> repetitions == 2);
+                .containsValue(2L);
     }
 }
